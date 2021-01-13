@@ -9,7 +9,6 @@
 <body>
     <?php
     $January = array();
-    //テスト
     
     for($i=0; $i<31; $i++) {
         $timestamp = mktime(0, 0, 0, 1, $i + 1, 2021);
