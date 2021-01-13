@@ -8,6 +8,31 @@
 </head>
 <body>
     <?php
+
+    for($i=1; $i<13; $i++){
+        $month = 'month_' . $i;
+        $$month = array();
+        if($i === 4 || $i === 6 || $i === 9 || $i === 11){
+            for($j=0; $j<30; $j++) {
+                $timestamp = mktime(0, 0, 0, $i, $j + 1, 2021);
+                $date = date('w', $timestamp);
+                $$month[$j] = $date;
+            }
+        }else if($i === 2){
+            for($j=0; $j<28; $j++) {
+                $timestamp = mktime(0, 0, 0, $i, $j + 1, 2021);
+                $date = date('w', $timestamp);
+                $$month[$j] = $date;
+            }
+        }else {
+            for($j=0; $j<31; $j++) {
+                $timestamp = mktime(0, 0, 0, $i, $j + 1, 2021);
+                $date = date('w', $timestamp);
+                $$month[$j] = $date;
+            }
+        }
+    }
+
     $January = array();
     
     for($i=0; $i<31; $i++) {
