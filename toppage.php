@@ -43,13 +43,13 @@
             <table class="table table-bordered">
             <thead>
                 <tr>
-                <th>Sunday</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
+                <th style="width:14%"><span style="font-size:80%">Sunday</span></th>
+                <th style="width:14%"><span style="font-size:80%">Monday</span></th>
+                <th style="width:14%"><span style="font-size:80%">Tuesday</span></th>
+                <th style="width:14%"><span style="font-size:80%">Wednesday</span></th>
+                <th style="width:14%"><span style="font-size:80%">Thursday</span></th>
+                <th style="width:14%"><span style="font-size:80%">Friday</span></th>
+                <th style="width:14%"><span style="font-size:80%">Saturday</span></th>
                 </tr>
             </thead>
             <tbody>
