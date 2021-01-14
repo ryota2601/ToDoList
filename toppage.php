@@ -7,8 +7,9 @@
     <title>ToDoList</title>
 </head>
 <body>
-    <?php
+    <h1>2021年</h1>
 
+    <?php
     for($i=1; $i<13; $i++){
         $month = 'month_' . $i;
         $$month = array();
@@ -32,56 +33,89 @@
             }
         }
     }
-
-    $January = array();
-    
-    for($i=0; $i<31; $i++) {
-        $timestamp = mktime(0, 0, 0, 1, $i + 1, 2021);
-        $date = date('w', $timestamp);
-        $January[$i] = $date;
-    }
     ?>
 
-    <div class="container">
-    <table class="table table-bordered">
-    <thead>
-        <tr>
-        <th>Sunday</th>
-        <th>Monday</th>
-        <th>Tuesday</th>
-        <th>Wednesday</th>
-        <th>Thursday</th>
-        <th>Friday</th>
-        <th>Saturday</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        $first = $January[0];
-        $last = 6 - $January[31];
+    <?php
+    for($t=1; $t<13; $t++){
+        echo '<h2 class="text-center">' . $t . '月' . '</h2>';
+        echo '
+            <div class="container">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                <th>Sunday</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                </tr>
+            </thead>
+            <tbody>
+            ';
+        $month = 'month_' . $t;
+        $c_month = $$month;
+        $first = $c_month[0];
+        $last = 6 - $c_month[count($c_month) - 1];
         echo '<tr>';
-        echo '<td colspan="' . $first . '"></td>';
+        if($first != 0){
+            echo '<td colspan="' . $first . '"></td>';
+        }
         for($j=0; $j<6; $j++){
             if($j === 0) {
-                for($i=0; $i<31; $i++){
-                    if(intdiv($i + $first, 7) === $j){
-                        echo '<td>' . ($i + 1) . '</td>';
+                if($t === 4 || $t === 6 || $t === 9 || $t === 11){
+                    for($i=0; $i<30; $i++){
+                        if(intdiv($i + $first, 7) === $j){
+                            echo '<td>' . ($i + 1) . '</td>';
+                        }
+                    }
+                }else if($t === 2){
+                    for($i=0; $i<28; $i++){
+                        if(intdiv($i + $first, 7) === $j){
+                            echo '<td>' . ($i + 1) . '</td>';
+                        }
+                    }
+                }else {
+                    for($i=0; $i<31; $i++){
+                        if(intdiv($i + $first, 7) === $j){
+                            echo '<td>' . ($i + 1) . '</td>';
+                        }
                     }
                 }
             }else {
                 echo '</tr><tr>';
-                for($i=0; $i<31; $i++){
-                    if(intdiv($i + $first, 7) === $j){
-                        echo '<td>' . ($i + 1) . '</td>';
+                if($t === 4 || $t === 6 || $t === 9 || $t === 11){
+                    for($i=0; $i<30; $i++){
+                        if(intdiv($i + $first, 7) === $j){
+                            echo '<td>' . ($i + 1) . '</td>';
+                        }
+                    }
+                }else if($t === 2){
+                    for($i=0; $i<28; $i++){
+                        if(intdiv($i + $first, 7) === $j){
+                            echo '<td>' . ($i + 1) . '</td>';
+                        }
+                    }
+                }else {
+                    for($i=0; $i<31; $i++){
+                        if(intdiv($i + $first, 7) === $j){
+                            echo '<td>' . ($i + 1) . '</td>';
+                        }
                     }
                 }
-
+            }
+            if($first <= 4) {
+                if($j === 4){
+                    break;
+                }
             }
         }
-        echo '<td colspan="' . $last . '"></td></tr>';
-        ?>
-    </tbody>
-    </table>
-    </div>
+        if($last != 0){
+            echo '<td colspan="' . $last . '"></td>';
+        }
+        echo '</tr></tbody></table></div>';
+    }
+    ?>
 </body>
 </html>
