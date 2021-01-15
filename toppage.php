@@ -133,7 +133,7 @@
     <script language="javascript" type="text/javascript">
         for($i=1; $i<13; $i++){
             $month_id = "month_" . $i; 
-            document.getElementById($month_id).display = "none";
+            document.getElementById($month_id).style.display = "none";
         }
         document.getElementById("h1").display = "none";
         function SelectMonth(){
