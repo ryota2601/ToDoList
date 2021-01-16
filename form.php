@@ -11,10 +11,12 @@
 </head>
 <body>
     <div class="container">
-        <form action="toppage.php">
+        <form action="todo_submit.php">
             <div class="form-group">
                 <h2>予定を追加する</h2>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <br>
+                <input type="date" name="date"></input>
             </div>
             <input type="submit" value="追加">
         </form>
