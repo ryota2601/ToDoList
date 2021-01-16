@@ -20,6 +20,17 @@
     </div>
 
     <?php
+    ini_set('display_errors',"On");
+    error_reporting(E_ALL);
+    function h($str) { return htmlspecialchars($str, ENT_QUOTES, "UTF-8"); }
+
+    $pdo = new PDO("sqlite:ToDoList.sqlite");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+    $st = $pdo->query("select * from ToDoList;");
+    $data = $st->fetchAll();
+    ?>
+
+    <?php
     $id = array();
     for($i=1; $i<13; $i++){
         $month = 'month_' . $i;
