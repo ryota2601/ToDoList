@@ -1,3 +1,10 @@
+<?php
+$pdo = new PDO("sqlite:ToDoList.sqlite");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+$st = $pdo->query('SELECT * FROM scadule;');
+$data = $st->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,9 +20,9 @@
     <h1 class="text-center" id="h1">2021</h1>
     <div class="container">
         <div class="row">
-            <div class="col-1"><input type="button" value='b_back'></div>
+            <div class="col-1"><input type="button" value='b_back' onclick="BackMonth()"></div>
             <div class="col-9"></div>
-            <div class="col-1"><input type="button" value='b_next'></div>
+            <div class="col-1"><input type="button" value='b_next' onclick="NextMonth()"></div>
         </div>
     </div>
 
@@ -50,11 +57,11 @@
     <?php
     for($t=1; $t<13; $t++){
         $month = 'month_' . $t;
-        echo '<div class="container"><h2 class="text-center">' . $t . '</h2>';
+        echo '<div class="container" id="' . $id[$t] . '"><h2 class="text-center">' . $t . '</h2>';
         echo '
             <div class="row">
             <div class="col-12">
-            <table class="table table-bordered" id="' . $id[$t] . '">
+            <table class="table table-bordered">
             <thead>
                 <tr>
                 <th style="width:14%"><span style="font-size:80%">Sunday</span></th>
@@ -80,19 +87,34 @@
                 if($t === 4 || $t === 6 || $t === 9 || $t === 11){
                     for($i=0; $i<30; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            echo '<td>' . ($i + 1) . '</td>';
+                            $m = '0' . $t;
+                            $d = '0' . ($i+1);
+                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
+                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
+                            echo '<input type="hidden" value="' . $content . '" name="content">';
+                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else if($t === 2){
                     for($i=0; $i<28; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            echo '<td>' . ($i + 1) . '</td>';
+                            $m = '0' . $t;
+                            $d = '0' . ($i+1);
+                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
+                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
+                            echo '<input type="hidden" value="' . $content . '" name="content">';
+                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else {
                     for($i=0; $i<31; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            echo '<td>' . ($i + 1) . '</td>';
+                            $m = '0' . $t;
+                            $d = '0' . ($i+1);
+                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
+                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
+                            echo '<input type="hidden" value="' . $content . '" name="content">';
+                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }
@@ -101,19 +123,34 @@
                 if($t === 4 || $t === 6 || $t === 9 || $t === 11){
                     for($i=0; $i<30; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            echo '<td>' . ($i + 1) . '</td>';
+                            $m = '0' . $t;
+                            $d = '0' . ($i+1);
+                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
+                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
+                            echo '<input type="hidden" value="' . $content . '" name="content">';
+                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else if($t === 2){
                     for($i=0; $i<28; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            echo '<td>' . ($i + 1) . '</td>';
+                            $m = '0' . $t;
+                            $d = '0' . ($i+1);
+                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
+                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
+                            echo '<input type="hidden" value="' . $content . '" name="content">';
+                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else {
                     for($i=0; $i<31; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            echo '<td>' . ($i + 1) . '</td>';
+                            $m = '0' . $t;
+                            $d = '0' . ($i+1);
+                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
+                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
+                            echo '<input type="hidden" value="' . $content . '" name="content">';
+                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }
@@ -131,14 +168,49 @@
     }
     ?>
     <script language="javascript" type="text/javascript">
+        var today = new Date();
+        var now_month = today.getMonth() + 1;
         for($i=1; $i<13; $i++){
-            $month_id = "month_" . $i; 
-            document.getElementById($month_id).style.display = "none";
+            if($i != now_month){
+                $month_id = "month_" + $i; 
+                document.getElementById($month_id).style.display = "none";
+            }
         }
-        document.getElementById("h1").display = "none";
-        function SelectMonth(){
-
+        function NextMonth(){
+            now_month++;
+            if(now_month>12){
+                now_month = 12;
+            }
+            console.log(now_month);
+            for($i=1; $i<13; $i++){
+                if($i != now_month){
+                    $month_id = "month_" + $i; 
+                    document.getElementById($month_id).style.display = "none";
+                }else {
+                    document.getElementById($month_id).style.display = "block";
+                }
+            }
+        }
+        function BackMonth(){
+            now_month--;
+            if(now_month<1){
+                now_month = 1;
+            }
+            console.log(now_month);
+            for($i=1; $i<13; $i++){
+                if($i != now_month){
+                    $month_id = "month_" + $i; 
+                    document.getElementById($month_id).style.display = "none";
+                }else {
+                    document.getElementById($month_id).style.display = "block";
+                }
+            }
         }
     </script>
+    <pre>
+    <?php
+    print_r($data);
+    ?>
+    </pre>
 </body>
 </html>

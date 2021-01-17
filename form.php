@@ -11,10 +11,14 @@
 </head>
 <body>
     <div class="container">
-        <form action="toppage.php">
+        <form action="index.php">
             <div class="form-group">
+                <input type="date" value="<?php echo $_GET["day"]; ?>" readonly>
+                <input type="hidden" value="<?php echo $_GET["day"]; ?>" name="day">
+                <h2><?php echo $_GET["day"];?>の予定</h2>
+                
                 <h2>予定を追加する</h2>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
             </div>
             <input type="submit" value="追加">
         </form>
