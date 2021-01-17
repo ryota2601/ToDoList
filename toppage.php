@@ -55,6 +55,13 @@ $data = $st->fetchAll();
     ?>
 
     <?php
+    function td($month_length){
+        for($i=0; $i<$month_length; $i++){
+            if(intdiv($i + $first, 7) === $j){
+                echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
+            }
+        }
+    }
     for($t=1; $t<13; $t++){
         $month = 'month_' . $t;
         echo '<div class="container" id="' . $id[$t] . '"><h2 class="text-center">' . $t . '</h2>';
@@ -85,44 +92,20 @@ $data = $st->fetchAll();
         for($j=0; $j<6; $j++){
             if($j === 0) {
                 if($t === 4 || $t === 6 || $t === 9 || $t === 11){
-                    for($i=0; $i<30; $i++){
-                        if(intdiv($i + $first, 7) === $j){
-                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
-                        }
-                    }
+                    td(30);
                 }else if($t === 2){
-                    for($i=0; $i<28; $i++){
-                        if(intdiv($i + $first, 7) === $j){
-                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
-                        }
-                    }
+                    td(28);
                 }else {
-                    for($i=0; $i<31; $i++){
-                        if(intdiv($i + $first, 7) === $j){
-                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
-                        }
-                    }
+                    td(31);
                 }
             }else {
                 echo '</tr><tr>';
                 if($t === 4 || $t === 6 || $t === 9 || $t === 11){
-                    for($i=0; $i<30; $i++){
-                        if(intdiv($i + $first, 7) === $j){
-                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
-                        }
-                    }
+                    td(30);
                 }else if($t === 2){
-                    for($i=0; $i<28; $i++){
-                        if(intdiv($i + $first, 7) === $j){
-                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
-                        }
-                    }
+                    td(28);
                 }else {
-                    for($i=0; $i<31; $i++){
-                        if(intdiv($i + $first, 7) === $j){
-                            echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
-                        }
-                    }
+                    td(31);
                 }
             }
             if($first <= 4) {
