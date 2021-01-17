@@ -1,7 +1,7 @@
 <?php
 $pdo = new PDO("sqlite:ToDoList.sqlite");
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-$st = $pdo->query('SELECT * FROM scadule;');
+$st = $pdo->query('SELECT content FROM scadule WHERE hiduke = "2021-01-01";');
 $data = $st->fetchAll();
 ?>
 
@@ -87,33 +87,18 @@ $data = $st->fetchAll();
                 if($t === 4 || $t === 6 || $t === 9 || $t === 11){
                     for($i=0; $i<30; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            $m = '0' . $t;
-                            $d = '0' . ($i+1);
-                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
-                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
-                            echo '<input type="hidden" value="' . $content . '" name="content">';
                             echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else if($t === 2){
                     for($i=0; $i<28; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            $m = '0' . $t;
-                            $d = '0' . ($i+1);
-                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
-                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
-                            echo '<input type="hidden" value="' . $content . '" name="content">';
                             echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else {
                     for($i=0; $i<31; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            $m = '0' . $t;
-                            $d = '0' . ($i+1);
-                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
-                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
-                            echo '<input type="hidden" value="' . $content . '" name="content">';
                             echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
@@ -123,33 +108,18 @@ $data = $st->fetchAll();
                 if($t === 4 || $t === 6 || $t === 9 || $t === 11){
                     for($i=0; $i<30; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            $m = '0' . $t;
-                            $d = '0' . ($i+1);
-                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
-                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
-                            echo '<input type="hidden" value="' . $content . '" name="content">';
                             echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else if($t === 2){
                     for($i=0; $i<28; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            $m = '0' . $t;
-                            $d = '0' . ($i+1);
-                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
-                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
-                            echo '<input type="hidden" value="' . $content . '" name="content">';
                             echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
                 }else {
                     for($i=0; $i<31; $i++){
                         if(intdiv($i + $first, 7) === $j){
-                            $m = '0' . $t;
-                            $d = '0' . ($i+1);
-                            $day = '2021-' . substr($m,-2) . '-' .substr($d,-2);
-                            $content = $pdo->query('SELECT * FROM scadule WHERE day ="' . $day . '";');
-                            echo '<input type="hidden" value="' . $content . '" name="content">';
                             echo '<td><a href="form.php?day=2021-'.substr('0'.$t,-2).'-'.substr('0'.($i + 1),-2).'">' . ($i + 1) . '</td>';
                         }
                     }
@@ -184,7 +154,7 @@ $data = $st->fetchAll();
             console.log(now_month);
             for($i=1; $i<13; $i++){
                 if($i != now_month){
-                    $month_id = "month_" + $i; 
+                    $month_id = "month_" + $i;
                     document.getElementById($month_id).style.display = "none";
                 }else {
                     document.getElementById($month_id).style.display = "block";
@@ -210,6 +180,8 @@ $data = $st->fetchAll();
     <pre>
     <?php
     print_r($data);
+    print_r($data[0]['content']);
+    echo $data[0]['content']
     ?>
     </pre>
 </body>

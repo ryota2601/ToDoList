@@ -1,3 +1,10 @@
+<?php
+$pdo = new PDO("sqlite:ToDoList.sqlite");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+$st = $pdo->query('SELECT * FROM scadule;');
+$data = $st->fetchAll();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,17 +18,22 @@
 </head>
 <body>
     <div class="container">
-        <form action="index.php">
+        <form action="form_submit.php" method="get">
             <div class="form-group">
-                <input type="date" value="<?php echo $_GET["day"]; ?>" readonly>
+                <?php 
+                $day = $_GET["day"];
+                $content_st = $pdo->query('SELECT content FROM scadule WHERE hiduke ="' . $day . '";');
+                $content_data = $content_st->fetchAll();
+                ?>
                 <input type="hidden" value="<?php echo $_GET["day"]; ?>" name="day">
-                <h2><?php echo $_GET["day"];?>の予定</h2>
-                
-                <h2>予定を追加する</h2>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="1"></textarea>
+                <h1 class="text-center mt-3"><?php echo $_GET["day"];?>の予定</h1>
+                <p class="border border-dark text-center"><?php echo $content_data[0]["content"];?></p>
+                <h3 class="text-center mt-5">予定を追加する</h3>
+                <textarea class="form-control" name="content" rows="1"></textarea>
             </div>
-            <input type="submit" value="追加">
+            <div class="text-center"><input type="submit" value="追加" class="btn btn-primary"></div>
         </form>
+        <div class="text-center"><a href="toppage.php" class="btn btn-secondary mt-3" role="button">戻る</a></div>
     </div>
 </body>
 </html>
