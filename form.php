@@ -18,7 +18,7 @@ $data = $st->fetchAll();
 </head>
 <body>
     <div class="container">
-        <form action="form_submit.php" method="get">
+        <form action="form_submit.php" method="post">
             <div class="form-group">
                 <?php 
                 $day = $_GET["day"];

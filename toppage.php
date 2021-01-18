@@ -141,9 +141,13 @@ $data = $st->fetchAll();
         var today = new Date();
         var now_month = today.getMonth() + 1;
         for($i=1; $i<13; $i++){
+            console.log($i);
             if($i != now_month){
                 $month_id = "month_" + $i; 
                 document.getElementById($month_id).style.display = "none";
+            }else {
+                $month_id = "month_" + $i;
+                document.getElementById($month_id).style.display = "block";
             }
         }
         function NextMonth(){
@@ -157,6 +161,7 @@ $data = $st->fetchAll();
                     $month_id = "month_" + $i;
                     document.getElementById($month_id).style.display = "none";
                 }else {
+                    $month_id = "month_" + $i;
                     document.getElementById($month_id).style.display = "block";
                 }
             }
@@ -172,17 +177,11 @@ $data = $st->fetchAll();
                     $month_id = "month_" + $i; 
                     document.getElementById($month_id).style.display = "none";
                 }else {
+                    $month_id = "month_" + $i;
                     document.getElementById($month_id).style.display = "block";
                 }
             }
         }
     </script>
-    <pre>
-    <?php
-    print_r($data);
-    print_r($data[0]['content']);
-    echo $data[0]['content']
-    ?>
-    </pre>
 </body>
 </html>

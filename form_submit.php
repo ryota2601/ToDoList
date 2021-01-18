@@ -1,15 +1,13 @@
-<!DOCTYPE html>
+
 <?php
-if (isset($_GET["day"]) && isset($_GET["content"])) {
-    $day = $_GET["day"];
-    $content = $_GET["content"];
+if (isset($_POST["day"]) && isset($_POST["content"]) && $_POST["content"] != "") {
+    $day = $_POST["day"];
+    $content = $_POST["content"];   
+    $pdo = new PDO("sqlite:ToDoList.sqlite");
 
-    $pdo = new PDO("sqlite:myblog.sqlite");
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-    $st = $pdo->prepare('DELETE FROM scadule WHERE hiduke ="' . $day . '";');
-    $st = $pdo->prepare('INSERT INTO scdule(hiduke, content) VALUES(?, ?)');
-    $st->execute(array($day, $content));
-
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING); 
+    $st = $pdo->query('DELETE FROM scadule WHERE hiduke ="' . $day . '";');
+    $st2 = $pdo->query('INSERT INTO scadule(hiduke, content) VALUES("' . $day . '", "' . $content . '")');
     $result = "登録しました";
 }
 else {
@@ -17,6 +15,7 @@ else {
 }
 ?>
 
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
